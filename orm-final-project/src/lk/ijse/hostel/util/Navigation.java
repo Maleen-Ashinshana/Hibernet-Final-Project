@@ -24,6 +24,14 @@ public class Navigation {
                 window.setTitle("Login Form");
                 iniUI("loginForm.fxml");
                 break;
+            case ROOM:
+                window.setTitle("Room Form");
+                iniUI("roomForm.fxml");
+                break;
+            case STUDENT:
+                window.setTitle("Dash Board Form");
+                iniUI("dashboardForm.fxml");
+                break;
             default:
                 new Alert(Alert.AlertType.ERROR,"UI Not Found!..");
         }

@@ -1,2 +1,4 @@
-package lk.ijse.hostel.controller;public class roomFormController {
+package lk.ijse.hostel.controller;
+
+public class roomFormController {
 }
