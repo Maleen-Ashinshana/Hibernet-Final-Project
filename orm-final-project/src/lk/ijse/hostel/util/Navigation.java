@@ -32,6 +32,10 @@ public class Navigation {
                 window.setTitle("Dash Board Form");
                 iniUI("dashboardForm.fxml");
                 break;
+            case RESERVATION:
+                window.setTitle("Reservation");
+                iniUI("resivationForm.fxml");
+                break;
             default:
                 new Alert(Alert.AlertType.ERROR,"UI Not Found!..");
         }

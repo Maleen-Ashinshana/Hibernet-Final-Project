@@ -74,6 +74,8 @@ public class LoginFormController {
             txtUserName.setFocusColor(Paint.valueOf("Red"));
             txtUserName.requestFocus();
         }*/
+        Stage widow= (Stage) pane.getScene().getWindow();
+        widow.close();
         URL resource = getClass().getResource("/lk/ijse/hostel/view/dashboardForm.fxml");
         Parent load = FXMLLoader.load(resource);
         Scene scene = new Scene(load);

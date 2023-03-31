@@ -24,31 +24,4 @@ public class UserDAOIMPL implements UserDAO {
         }
         return entity;
     }
-
-/*    @Override
-    public boolean add(UserEntity entity) throws ConstraintViolationException {
-*//*        Session session= FactoryConfiguration.getInstance().getSession();
-        Transaction transaction= session.getTransaction();
-        try{
-            session.save(entity);
-            transaction.commit();
-            return true;
-        }catch (Exception e){
-            e.printStackTrace();
-            transaction.rollback();
-            return false;
-        }*//*
-        Session session=FactoryConfiguration.getInstance().getSession();
-        Transaction transaction= session.getTransaction();
-        try {
-            session.save(entity);
-            transaction.commit();
-
-            return true;
-        }catch (Exception e){
-            e.printStackTrace();
-            transaction.rollback();
-        }
-        return false;
-    }*/
 }

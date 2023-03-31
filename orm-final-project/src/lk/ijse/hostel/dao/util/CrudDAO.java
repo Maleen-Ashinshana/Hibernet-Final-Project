@@ -8,9 +8,19 @@ import org.omg.CosNaming.NamingContextPackage.NotFound;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface CrudDAO<T extends SuperEntity,ID extends Serializable> extends  SuperDAO {
-/*    public boolean save(T  entity) throws ConstraintViolationException;
+    T save(T entity) throws  ConstraintViolationException;
+    T update(T entity) throws ConstraintViolationException;
+    void delete (String id) throws NotFoundException;
+    T search(ID pk)throws ConstraintViolationException;
+    List<T> findAll();
+    long count();
+
+    boolean existByPk(ID pk);
+/*
+    public boolean save(T  entity) throws ConstraintViolationException;
     public boolean update(T entity)throws ConstraintViolationException;
      public boolean delete(String id) throws NotFoundException;
      public T search(T entity) throws ConstraintViolationException;

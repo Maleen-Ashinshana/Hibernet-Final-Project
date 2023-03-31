@@ -17,10 +17,10 @@ import java.sql.Date;
 @Table(name = "student")
 public class StudentEntity implements SuperEntity{
     @Id
-    String studentId;
-    String StudentName;
-    String address;
-    int contact_number;
-    Date date_of_birth;
-    String gender;
+    private String studentId;
+    private String StudentName;
+    private String address;
+    private int contact_number;
+    private String date_of_birth;
+    private String gender;
 }

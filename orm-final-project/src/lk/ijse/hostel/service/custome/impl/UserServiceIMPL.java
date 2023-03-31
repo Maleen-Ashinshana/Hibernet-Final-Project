@@ -9,8 +9,6 @@ import lk.ijse.hostel.service.custome.UserService;
 import lk.ijse.hostel.service.exception.DuplicateException;
 import lk.ijse.hostel.service.util.Convertor;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 
 public class UserServiceIMPL implements UserService {
     private final UserDAO userDAO;
@@ -23,7 +21,6 @@ public class UserServiceIMPL implements UserService {
     @Override
     public UserDTO saveUser(UserDTO userDTO) throws DuplicateException {
         userDAO.add(convertor.toUser(userDTO));
-
         return userDTO;
     }
 

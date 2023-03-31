@@ -15,8 +15,8 @@ import javax.persistence.Table;
 @Table(name = "room")
 public class RoomEntity implements SuperEntity {
     @Id
-    String room_type_id;
-    String type;
-    String key_money;
-    int qty;
+    private String room_type_id;
+    private String type;
+    private String key_money;
+    private int qty;
 }
