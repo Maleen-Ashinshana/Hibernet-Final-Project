@@ -3,15 +3,11 @@ package lk.ijse.hostel.dao.custom.impl;
 import lk.ijse.hostel.dao.custom.StudentDAO;
 import lk.ijse.hostel.dao.exception.ConstraintViolationException;
 import lk.ijse.hostel.entity.StudentEntity;
-import lk.ijse.hostel.entity.SuperEntity;
 import lk.ijse.hostel.service.exception.NotFoundException;
 import lk.ijse.hostel.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Example;
 
-import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,12 +65,29 @@ public class StudentDAOIMPL implements StudentDAO {
 
     @Override
     public StudentEntity update(StudentEntity entity) throws ConstraintViolationException {
-        return null;
+        Session session=FactoryConfiguration.getInstance().getSession();
+        Transaction transaction= session.beginTransaction();
+        try {
+            session.saveOrUpdate(entity);
+            transaction.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        return entity;
     }
 
     @Override
     public void delete(String id) throws NotFoundException {
-
+    Session session=FactoryConfiguration.getInstance().getSession();
+    Transaction transaction= session.beginTransaction();
+    try {
+        session.delete(id,new StudentEntity());
+        transaction.commit();
+    }catch (Exception e){
+        e.printStackTrace();
+        transaction.rollback();
+    }
     }
 
     @Override
@@ -86,6 +99,7 @@ public class StudentDAOIMPL implements StudentDAO {
             transaction.commit();
             return new StudentEntity(pk,studentEntity.getStudentName(),studentEntity.getAddress(),studentEntity.getContact_number(),studentEntity.getDate_of_birth(),studentEntity.getGender());
         }catch (Exception e){
+            e.printStackTrace();
             transaction.rollback();
             return null;
         }

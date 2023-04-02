@@ -1,9 +1,7 @@
 package lk.ijse.hostel.controller;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,13 +12,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import lk.ijse.hostel.dto.StudentDTO;
 import lk.ijse.hostel.service.ServiceFactory;
 import lk.ijse.hostel.service.ServiceTypes;
 import lk.ijse.hostel.service.custome.StudentService;
 import lk.ijse.hostel.service.exception.DuplicateException;
+import lk.ijse.hostel.service.exception.NotFoundException;
 import lk.ijse.hostel.tm.StudentTM;
 import lk.ijse.hostel.util.Navigation;
 import lk.ijse.hostel.util.Routs;
@@ -28,7 +26,6 @@ import lk.ijse.hostel.util.Routs;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -102,11 +99,34 @@ public class DashboardFormController {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
+        Alert alert=new Alert(Alert.AlertType.WARNING,"are you sure to delete the Student",ButtonType.YES,ButtonType.NO);
+        Optional<ButtonType> result=alert.showAndWait();
+        if (result.isPresent()&&result.get()==ButtonType.YES){
+            try {
+                studentService.delete(txtStudentId.getText());
+                new Alert(Alert.AlertType.INFORMATION,"Student deleted").show();
+                tblStudent.getItems().removeAll(tblStudent.getSelectionModel().getSelectedItem());
+                txtStudentId.clear();
+                txtStudentName.clear();
+                txtAddress.clear();
+                txtContactNumber.clear();
+                txtDOB.clear();
+                txtGender.clear();
 
+            }catch (NotFoundException e){
+                new Alert(Alert.AlertType.WARNING,"No").show();
+            }
+        }
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
-
+        StudentDTO studentDTO=new StudentDTO(txtStudentId.getText(),txtStudentName.getText(),txtAddress.getText(),Integer.parseInt(txtContactNumber.getText()),txtDOB.getText(),txtGender.getText());
+        try {
+            studentService.updateStudent(studentDTO);
+            new Alert(Alert.AlertType.INFORMATION,"Update").show();
+        }catch (NotFoundException e){
+            new Alert(Alert.AlertType.ERROR,e.getMessage());
+        }
     }
 
     public void btnAddOnAction(ActionEvent actionEvent) {
@@ -170,28 +190,15 @@ public class DashboardFormController {
             txtStudentId.selectAll();
             txtStudentId.requestFocus();
         }
-/*        StudentDTO studentDTO=new StudentDTO(txtStudentId.getText(),txtStudentName.getText(),txtAddress.getText(),Integer.parseInt(txtContactNumber.getText()),txtDOB.getText(),txtGender.getText());
-        ObservableList<StudentDTO> dtos=tblStudent.getItems();
 
-
-        boolean isAdded=studentService.saveStudent(studentDTO);
-        if (isAdded){
-            new Alert(Alert.AlertType.CONFIRMATION,"Added").show();
-        }else {
-            new Alert(Alert.AlertType.ERROR,"No");
-        }*/
-
-        /*Alert alert = new Alert(Alert.AlertType.CONFIRMATION);*/
-
-        /*alert.setTitle("Add Customer");
-        alert.setContentText("Are you sure you want to add customer " + txtStudentId.getText() + " ?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.equals(null))*/
 
     }
 
 
+
+
     public void btnSearchOnAction(ActionEvent actionEvent) {
+        txtStudentIdOnAction(actionEvent);
 
     }
     private void studentView() {

@@ -3,6 +3,7 @@ package lk.ijse.hostel.controller;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -12,10 +13,11 @@ import lk.ijse.hostel.service.ServiceFactory;
 import lk.ijse.hostel.service.ServiceTypes;
 import lk.ijse.hostel.service.custome.RoomService;
 import lk.ijse.hostel.service.exception.DuplicateException;
+import lk.ijse.hostel.service.exception.NotFoundException;
 import lk.ijse.hostel.tm.RoomTM;
 
 import java.sql.SQLException;
-import java.util.regex.Pattern;
+import java.util.Optional;
 
 public class roomFormController {
     public AnchorPane pane;
@@ -61,11 +63,26 @@ public class roomFormController {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
-
+        Alert alert=new Alert(Alert.AlertType.WARNING,"are you sure to delete the Room", ButtonType.YES,ButtonType.NO);
+        Optional<ButtonType> result=alert.showAndWait();
+        if (result.isPresent()&&result.get()==ButtonType.YES){
+            try {
+                roomService.delete(txtRoomId.getText());
+                new Alert(Alert.AlertType.INFORMATION,"Deleted").show();
+            }catch (NotFoundException e){
+                new Alert(Alert.AlertType.WARNING,"No").show();
+            }
+        }
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
-
+      RoomDTO roomDTO=new RoomDTO(txtRoomId.getText(),txtType.getText(),txtKeyMoney.getText(),Integer.parseInt(txtQty.getText()));
+      try {
+          roomService.updateRoom(roomDTO);
+          new Alert(Alert.AlertType.INFORMATION,"Updated0").show();
+      }catch (NotFoundException e){
+          new Alert(Alert.AlertType.ERROR,e.getMessage());
+      }
     }
 
     public void btnSearchOnAction(ActionEvent actionEvent) {
@@ -73,6 +90,15 @@ public class roomFormController {
     }
 
     public void txtIdOnAction(ActionEvent actionEvent) {
-
+              RoomDTO roomDTO=roomService.search(txtRoomId.getText());
+              if (roomDTO!=null){
+                  fillData(roomDTO);
+              }
+    }
+    private void fillData(RoomDTO roomDTO){
+        txtRoomId.setText(roomDTO.getRoom_type_id());
+        txtType.setText(roomDTO.getType());
+        txtKeyMoney.setText(roomDTO.getKey_money());
+        txtQty.setText(String.valueOf(roomDTO.getQty()));
     }
 }

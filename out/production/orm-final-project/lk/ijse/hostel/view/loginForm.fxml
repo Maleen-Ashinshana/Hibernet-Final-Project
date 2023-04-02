@@ -10,10 +10,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="pane" prefHeight="608.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.LoginFormController">
+<AnchorPane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.LoginFormController">
    <children>
-      <ImageView fitHeight="608.0" fitWidth="806.0" opacity="0.91" pickOnBounds="true">
+      <ImageView disable="true" fitHeight="608.0" fitWidth="806.0" pickOnBounds="true" smooth="false">
          <image>
             <Image url="@../assect/iamges/ONIVXM0.jpg" />
          </image>
@@ -52,5 +51,6 @@
             <Font name="System Bold" size="40.0" />
          </font>
       </Label>
+      <AnchorPane layoutX="-275.0" layoutY="516.0" prefHeight="200.0" prefWidth="237.0" style="-fx-background-color: red;" />
    </children>
 </AnchorPane>

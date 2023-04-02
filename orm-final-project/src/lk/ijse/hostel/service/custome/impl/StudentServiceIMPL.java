@@ -11,7 +11,6 @@ import lk.ijse.hostel.service.exception.NotFoundException;
 import lk.ijse.hostel.service.util.Convertor;
 
 import java.util.List;
-import java.util.Optional;
 
 public class StudentServiceIMPL implements StudentService {
     private final StudentDAO studentDAO;
@@ -22,30 +21,24 @@ public class StudentServiceIMPL implements StudentService {
     }
     @Override
     public StudentDTO saveStudent(StudentDTO studentDTO) throws DuplicateException {
-
         studentDAO.save(convertor.toStudent(studentDTO));
         return studentDTO;
     }
 
-/*    @Override
-    public boolean saveStudent(StudentDTO studentDTO) throws DuplicateException {
-        return studentDAO.save(new StudentEntity(studentDTO.getStudentId(),studentDTO.getStudentName(),studentDTO.getAddress(),studentDTO.getContact_number(),studentDTO.getDate_of_birth(),studentDTO.getGender()));
-    }*/
-
     @Override
     public StudentDTO updateStudent(StudentDTO studentDTO) throws NotFoundException {
-        return null;
+        this.studentDAO.update(this.convertor.toStudent(studentDTO));
+        return studentDTO;
     }
 
     @Override
     public void delete(String code) throws NotFoundException {
+         this.studentDAO.delete(code);
 
     }
 
     @Override
     public StudentDTO search(String id) throws NotFoundException{
-        /*Optional<StudentEntity>studentEntity= Optional.ofNullable(studentDAO.search(id));
-        return convertor.fromStudent();*/
        StudentEntity se=studentDAO.search(id);
        return new StudentDTO(se.getStudentId(),se.getStudentName(),se.getAddress(),se.getContact_number(),se.getDate_of_birth(),se.getGender());
     }

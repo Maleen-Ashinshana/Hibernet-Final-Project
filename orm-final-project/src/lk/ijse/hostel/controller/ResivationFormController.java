@@ -26,6 +26,11 @@ public class ResivationFormController {
     public TableColumn colRoomId;
     public TableColumn colStatus;
 
+
+    public void initialize(){
+
+    }
+
     public void btnRegisterOnAction(ActionEvent actionEvent) {
 
     }
@@ -40,9 +45,11 @@ public class ResivationFormController {
 
     public void btnSearchOnAction(ActionEvent actionEvent) {
 
+
     }
 
     public void txtRes_IdOnAction(ActionEvent actionEvent) {
 
     }
+
 }
