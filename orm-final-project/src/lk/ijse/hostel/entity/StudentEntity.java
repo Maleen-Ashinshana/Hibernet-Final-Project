@@ -2,17 +2,15 @@ package lk.ijse.hostel.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Date;
 @Entity
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+
 @ToString
 @Table(name = "student")
 public class StudentEntity implements SuperEntity{
@@ -23,4 +21,7 @@ public class StudentEntity implements SuperEntity{
     private int contact_number;
     private String date_of_birth;
     private String gender;
+    public StudentEntity(){
+
+    }
 }

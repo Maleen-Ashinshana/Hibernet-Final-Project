@@ -1,19 +1,20 @@
 package lk.ijse.hostel.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import lk.ijse.hostel.entity.UserEntity;
 import lk.ijse.hostel.util.FactoryConfiguration;
-import lk.ijse.hostel.util.Navigation;
-import lk.ijse.hostel.util.Routs;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -27,9 +28,27 @@ public class LoginFormController {
     public AnchorPane pane;
     public JFXTextField txtUserName;
     public JFXPasswordField txtPassword;
+    public Label lblCreateAccount;
+    public AnchorPane layer1;
+    public Label lblSign;
+    public JFXButton singUp;
+    public JFXTextField txtId;
+    public AnchorPane layer2;
+    public JFXButton btnForget;
+    public JFXButton singIn;
+    public JFXButton underSingUp;
+    public JFXButton underSingIn;
+    public JFXButton underSingIn1;
     private Pattern txtUserNamePatten;
     private Pattern txtPasswordPatten;
 
+    public void initialize(){
+        /*singUp.setVisible(true);*/
+        singIn.setVisible(false);
+        underSingUp.setVisible(false);
+        lblCreateAccount.setVisible(false);
+        txtId.setVisible(false);
+    }
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
         Session session= FactoryConfiguration.getInstance().getSession();
         Transaction transaction= session.beginTransaction();
@@ -90,7 +109,60 @@ public class LoginFormController {
     }
 
     public void btnCreateOnAction(ActionEvent actionEvent) throws IOException {
-      pane.getChildren().clear();
-        Navigation.navigation(Routs.USER,pane);
+      /*pane.getChildren().clear();
+        Navigation.navigation(Routs.USER,pane);*/
+    }
+
+    public void btnOnCliked(MouseEvent mouseEvent) {
+        TranslateTransition slide=new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.7));
+        slide.setNode(layer2);
+
+        slide.setToX(558);
+        slide.play();
+
+        layer1.setTranslateX(-400);
+
+        singIn.setVisible(true);
+        singUp.setVisible(false);
+        underSingIn1.setVisible(false);
+        underSingUp.setVisible(true);
+        lblSign.setVisible(false);
+        txtId.setVisible(true);
+        btnForget.setVisible(false);
+        lblCreateAccount.setVisible(true);
+
+        slide.setOnFinished((e->{
+
+             
+        }));
+    }
+
+    public void btnFrogetPasswordOnAction(ActionEvent actionEvent) {
+
+    }
+
+    public void btnOnCliked2(MouseEvent mouseEvent) {
+        TranslateTransition slide=new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.7));
+        slide.setNode(layer2);
+
+        slide.setToX(0);
+        slide.play();
+
+        layer1.setTranslateX(0);
+        underSingUp.setVisible(false);
+        underSingIn1.setVisible(true);
+        singIn.setVisible(false);
+        singUp.setVisible(true);
+        lblSign.setVisible(true);
+        txtId.setVisible(false);
+        btnForget.setVisible(true);
+        lblCreateAccount.setVisible(false);
+
+        slide.setOnFinished((e->{
+
+
+        }));
     }
 }

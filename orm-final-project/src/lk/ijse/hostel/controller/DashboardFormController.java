@@ -2,6 +2,8 @@ package lk.ijse.hostel.controller;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.hostel.dao.custom.impl.StudentDAOIMPL;
 import lk.ijse.hostel.dto.StudentDTO;
 import lk.ijse.hostel.service.ServiceFactory;
 import lk.ijse.hostel.service.ServiceTypes;
@@ -26,6 +29,7 @@ import lk.ijse.hostel.util.Routs;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -54,11 +58,14 @@ public class DashboardFormController {
     private Pattern dobPattern;
     private Pattern genderPattern;
     public StudentService studentService;
+    public StudentDAOIMPL studentDAOIMPL;
+    private ObservableList<StudentDTO> obList= FXCollections.observableArrayList();
 
 
     public void initialize() throws SQLException, ClassNotFoundException {
       pattern();
       studentView();
+      loadAllStudent();
       this.studentService= (StudentService) ServiceFactory.getInstance().getService(ServiceTypes.STUDENT);
     }
     public void pattern(){
@@ -190,13 +197,7 @@ public class DashboardFormController {
             txtStudentId.selectAll();
             txtStudentId.requestFocus();
         }
-
-
     }
-
-
-
-
     public void btnSearchOnAction(ActionEvent actionEvent) {
         txtStudentIdOnAction(actionEvent);
 
@@ -218,7 +219,25 @@ public class DashboardFormController {
         txtDOB.setText(studentDTO.getDate_of_birth());
         txtGender.setText(studentDTO.getGender());
     }
-   /* public void list(){
-        List<StudentTM>studentTMList=studentService.
-    }*/
+
+    public void btnBackOnAction(ActionEvent actionEvent) throws IOException {
+        URL resource = getClass().getResource("/lk/ijse/hostel/view/loginForm.fxml");
+        Parent load = FXMLLoader.load(resource);
+        Scene scene = new Scene(load);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        Stage widow= (Stage) mainPane.getScene().getWindow();
+        widow.close();
+        stage.show();
+    }
+    private void loadAllStudent(){
+        ArrayList<StudentDTO> studentDTOS=null;
+        studentDTOS= (ArrayList<StudentDTO>) studentService.findAll();
+        for (StudentDTO dto:studentDTOS) {
+            StudentDTO  studentDTO=new StudentDTO(dto.getStudentId(), dto.getStudentName(), dto.getAddress(), dto.getContact_number(), dto.getDate_of_birth(),dto.getGender());
+            obList.add(studentDTO);
+
+            tblStudent.setItems(obList);
+        }
+    }
 }

@@ -10,6 +10,7 @@ import lk.ijse.hostel.service.exception.DuplicateException;
 import lk.ijse.hostel.service.exception.NotFoundException;
 import lk.ijse.hostel.service.util.Convertor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentServiceIMPL implements StudentService {
@@ -45,6 +46,18 @@ public class StudentServiceIMPL implements StudentService {
 
     @Override
     public List<StudentDTO> findAll() {
-        return null;
+        //return studentDAO.findAll().stream().map(studentEntity -> convertor.fromStudent(studentEntity)).collect(Collectors.toList());
+        /*ArrayList<StudentDTO> studentDTOS=new ArrayList<>();
+        ArrayList<StudentEntity> entities= (ArrayList<StudentEntity>) studentDAO.findAll();
+        for (StudentEntity studentEntity:entities) {
+            studentDTOS.add(new StudentDTO(studentEntity.getStudentId(),studentEntity.getStudentName(),studentEntity.getStudentName(),studentEntity.getContact_number(),studentEntity.getDate_of_birth(),studentEntity.getGender()));
+        }
+        return studentDTOS;*/
+        ArrayList<StudentDTO> dtos=new ArrayList<>();
+        ArrayList<StudentEntity>studentEntities= (ArrayList<StudentEntity>) studentDAO.findAll();
+        for (StudentEntity entity:studentEntities) {
+            dtos.add(new StudentDTO(entity.getStudentId(), entity.getStudentName(), entity.getAddress(), entity.getContact_number(), entity.getDate_of_birth(), entity.getGender()));
+        }
+        return dtos;
     }
 }
