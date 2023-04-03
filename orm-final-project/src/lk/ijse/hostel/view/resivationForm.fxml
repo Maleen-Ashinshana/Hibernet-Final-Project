@@ -13,33 +13,33 @@
 
 <AnchorPane fx:id="pane" prefHeight="874.0" prefWidth="991.0" style="-fx-background-color: white; -fx-background-radius: 30 30 30 30;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.ResivationFormController">
    <children>
-      <Label layoutX="20.0" layoutY="159.0" text="All Rooms">
+      <Label layoutX="20.0" layoutY="149.0" text="All Rooms">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblAllRooms" layoutX="123.0" layoutY="148.0" prefHeight="51.0" prefWidth="132.0">
+      <Label fx:id="lblAllRooms" layoutX="123.0" layoutY="135.0" prefHeight="51.0" prefWidth="132.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="636.0" layoutY="159.0" text="Current Rooms:">
+      <Label layoutX="635.0" layoutY="139.0" text="Current Rooms:">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblCurrenRooms" layoutX="788.0" layoutY="149.0" prefHeight="51.0" prefWidth="137.0">
+      <Label fx:id="lblCurrenRooms" layoutX="788.0" layoutY="131.0" prefHeight="51.0" prefWidth="137.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="228.0" text="Types:">
+      <Label layoutX="14.0" layoutY="208.0" text="Types:">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="cmbTypes" layoutX="93.0" layoutY="228.0" prefHeight="31.0" prefWidth="132.0" />
-      <Label layoutX="656.0" layoutY="228.0" text="Qty:">
+      <JFXComboBox fx:id="cmbTypes" layoutX="93.0" layoutY="205.0" prefHeight="31.0" prefWidth="132.0" />
+      <Label layoutX="656.0" layoutY="198.0" text="Qty:">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -54,32 +54,32 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtResId" layoutX="30.0" layoutY="327.0" onAction="#txtRes_IdOnAction" prefHeight="37.0" prefWidth="190.0" promptText="id" />
-      <Label layoutX="32.0" layoutY="382.0" text="Date">
+      <JFXTextField fx:id="txtResId" layoutX="30.0" layoutY="327.0" onAction="#txtRes_IdOnAction" prefHeight="37.0" prefWidth="190.0" promptText="Id" />
+      <Label layoutX="32.0" layoutY="372.0" text="Date">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtDate" layoutX="33.0" layoutY="424.0" prefHeight="37.0" prefWidth="190.0" promptText="date" />
+      <JFXTextField fx:id="txtDate" layoutX="33.0" layoutY="424.0" prefHeight="37.0" prefWidth="190.0" promptText="Date" />
       <Label layoutX="26.0" layoutY="488.0" text="Student Id:">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="cmbStudentId" layoutX="34.0" layoutY="529.0" prefHeight="31.0" prefWidth="168.0" />
+      <JFXComboBox fx:id="cmbStudentId" layoutX="24.0" layoutY="519.0" prefHeight="31.0" prefWidth="168.0" promptText="SId" />
       <Label layoutX="416.0" layoutY="387.0" text="Status">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtStatus" layoutX="410.0" layoutY="426.0" prefHeight="37.0" prefWidth="190.0" promptText="stutas" />
+      <JFXTextField fx:id="txtStatus" layoutX="410.0" layoutY="426.0" prefHeight="37.0" prefWidth="190.0" promptText="Stutas" />
       <Label layoutX="426.0" layoutY="300.0" text="Room_Type_Id">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="cmbRoomTypeId" layoutX="416.0" layoutY="341.0" prefHeight="31.0" prefWidth="168.0" />
-      <TableView fx:id="tblView" layoutX="28.0" layoutY="613.0" prefHeight="328.0" prefWidth="944.0">
+      <JFXComboBox fx:id="cmbRoomTypeId" layoutX="416.0" layoutY="341.0" prefHeight="31.0" prefWidth="168.0" promptText="RId" />
+      <TableView fx:id="tblView" layoutX="28.0" layoutY="589.0" prefHeight="272.0" prefWidth="944.0">
         <columns>
           <TableColumn fx:id="colResId" prefWidth="134.0" text="Res_id" />
           <TableColumn fx:id="colDate" prefWidth="186.0" text="Date" />
