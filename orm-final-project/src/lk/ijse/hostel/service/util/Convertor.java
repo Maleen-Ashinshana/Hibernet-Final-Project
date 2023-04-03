@@ -10,10 +10,10 @@ import lk.ijse.hostel.entity.UserEntity;
 
 public class Convertor {
     public UserDTO fromUser(UserEntity userEntity){
-        return new UserDTO(userEntity.getId(), userEntity.getName(), userEntity.getEmail(), userEntity.getPassword());
+        return new UserDTO(userEntity.getId(), userEntity.getName(), userEntity.getPassword());
     }
     public UserEntity toUser(UserDTO userDTO){
-     return new UserEntity(userDTO.getId(), userDTO.getName(), userDTO.getEmail(), userDTO.getPassword());
+     return new UserEntity(userDTO.getId(), userDTO.getName(),userDTO.getPassword());
     }
    public StudentDTO fromStudent(StudentEntity studentEntity){
         return new StudentDTO(studentEntity.getStudentId(),studentEntity.getStudentName(),studentEntity.getAddress(),studentEntity.getContact_number(),studentEntity.getDate_of_birth(),studentEntity.getGender());

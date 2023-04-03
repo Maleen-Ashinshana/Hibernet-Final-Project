@@ -8,12 +8,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.hostel.dto.UserDTO;
 import lk.ijse.hostel.entity.UserEntity;
+import lk.ijse.hostel.service.ServiceFactory;
+import lk.ijse.hostel.service.ServiceTypes;
+import lk.ijse.hostel.service.custome.UserService;
+import lk.ijse.hostel.service.exception.DuplicateException;
 import lk.ijse.hostel.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -21,6 +28,7 @@ import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -41,13 +49,21 @@ public class LoginFormController {
     public JFXButton underSingIn1;
     private Pattern txtUserNamePatten;
     private Pattern txtPasswordPatten;
+    private Pattern idPatten;
+    private Pattern namePatten;
+    private Pattern passwordPatten;
+    public UserService userService;
 
-    public void initialize(){
+    public void initialize() throws SQLException, ClassNotFoundException {
         /*singUp.setVisible(true);*/
         singIn.setVisible(false);
         underSingUp.setVisible(false);
         lblCreateAccount.setVisible(false);
         txtId.setVisible(false);
+        idPatten= Pattern.compile("^[S][0][0-9]{1,}$");
+        namePatten=Pattern.compile("^[A-Za-z0-9]{4,}$");
+        passwordPatten=Pattern.compile("^[a-zA-Z0-9_]{8,}$");
+        this.userService= (UserService) ServiceFactory.getInstance().getService(ServiceTypes.USER);
     }
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
         Session session= FactoryConfiguration.getInstance().getSession();
@@ -164,5 +180,48 @@ public class LoginFormController {
 
 
         }));
+    }
+
+    public void btnSingInOnAction(ActionEvent actionEvent) {
+
+    }
+
+    public void btnSingUpOAction(ActionEvent actionEvent) {
+        boolean isIdMatched=idPatten.matcher(txtId.getText()).matches();
+        boolean isNameMatched=namePatten.matcher(txtUserName.getText()).matches();
+        boolean isPasswordMatched=passwordPatten.matcher(txtPassword.getText()).matches();
+
+        if (isIdMatched){
+            if(isNameMatched){
+                    if(isPasswordMatched){
+
+                        UserDTO userDTO=new UserDTO(txtId.getText(),txtUserName.getText(),txtPassword.getText());
+                        try {
+                            if (userService.saveUser(userDTO)==null){
+                                new Alert(Alert.AlertType.ERROR,"Fail To Register").show();
+                                return;
+                            }
+                            new Alert(Alert.AlertType.CONFIRMATION,"Registerd").show();
+                            txtId.clear();
+                            txtUserName.clear();
+                            txtPassword.clear();
+                        }catch (DuplicateException e){
+                            new Alert(Alert.AlertType.ERROR,"User Already Register!").show();
+                            txtId.selectAll();
+                            txtId.requestFocus();
+                        }
+                    }else {
+                        txtPassword.setFocusColor(Paint.valueOf("Red"));
+                        txtPassword.requestFocus();
+                    }
+
+            }else {
+                txtUserName.setFocusColor(Paint.valueOf("Red"));
+                txtUserName.requestFocus();
+            }
+        }else {
+            txtId.setFocusColor(Paint.valueOf("Red"));
+            txtId.requestFocus();
+        }
     }
 }

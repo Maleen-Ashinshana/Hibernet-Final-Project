@@ -3,14 +3,10 @@ package lk.ijse.hostel.controller;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Paint;
-import lk.ijse.hostel.dto.UserDTO;
 import lk.ijse.hostel.service.ServiceFactory;
 import lk.ijse.hostel.service.ServiceTypes;
 import lk.ijse.hostel.service.custome.UserService;
-import lk.ijse.hostel.service.exception.DuplicateException;
 import lk.ijse.hostel.util.Navigation;
 import lk.ijse.hostel.util.Routs;
 
@@ -44,6 +40,7 @@ public class CreateAccountFormController {
         boolean isEmailMatched=emailPatten.matcher(txtEmail.getText()).matches();
         boolean isPasswordMatched=passwordPatten.matcher(txtPassword.getText()).matches();
 
+/*
         if (isIdMatched){
             if(isNameMatched){
                 if(isEmailMatched){
@@ -77,6 +74,7 @@ public class CreateAccountFormController {
             txtId.setFocusColor(Paint.valueOf("Red"));
             txtId.requestFocus();
         }
+*/
 
 
 /*        try {

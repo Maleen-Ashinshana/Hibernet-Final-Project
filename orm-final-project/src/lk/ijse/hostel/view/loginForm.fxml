@@ -49,7 +49,7 @@
                </font>
             </Label>
             <JFXTextField fx:id="txtUserName" layoutX="138.0" layoutY="189.0" prefHeight="45.0" prefWidth="287.0" promptText="User Name" />
-            <JFXButton fx:id="underSingIn1" buttonType="RAISED" layoutX="207.0" layoutY="403.0" onAction="#btnLoginOnAction" prefHeight="39.0" prefWidth="162.0" style="-fx-background-color: #4C2149; -fx-background-radius: 20 20 20 20;" text="SING IN" textFill="WHITE">
+            <JFXButton fx:id="underSingIn1" buttonType="RAISED" layoutX="207.0" layoutY="403.0" onAction="#btnSingInOnAction" prefHeight="39.0" prefWidth="162.0" style="-fx-background-color: #4C2149; -fx-background-radius: 20 20 20 20;" text="SING IN" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -60,13 +60,13 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="txtId" layoutX="137.0" layoutY="134.0" prefHeight="45.0" prefWidth="287.0" promptText="User Name" text="id" />
+            <JFXTextField fx:id="txtId" layoutX="137.0" layoutY="134.0" prefHeight="45.0" prefWidth="287.0" promptText="id" />
             <Label fx:id="lblCreateAccount" layoutX="181.0" layoutY="91.0" text="Create Account" textFill="#4c2149">
                <font>
                   <Font name="Avignon Pro Demi Italic" size="25.0" />
                </font>
             </Label>
-            <JFXButton fx:id="underSingUp" buttonType="RAISED" layoutX="207.0" layoutY="353.0" prefHeight="39.0" prefWidth="162.0" style="-fx-background-color: #4C2149; -fx-background-radius: 20 20 20 20;" text="SING UP" textFill="WHITE">
+            <JFXButton fx:id="underSingUp" buttonType="RAISED" layoutX="207.0" layoutY="353.0" onAction="#btnSingUpOAction" prefHeight="39.0" prefWidth="162.0" style="-fx-background-color: #4C2149; -fx-background-radius: 20 20 20 20;" text="SING UP" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
