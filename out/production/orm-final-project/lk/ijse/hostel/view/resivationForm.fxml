@@ -3,108 +3,123 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="720.0" prefWidth="890.0" style="-fx-background-color: white; -fx-background-radius: 30 30 30 30;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.ResivationFormController">
+<AnchorPane fx:id="pane" prefHeight="874.0" prefWidth="991.0" style="-fx-background-color: white; -fx-background-radius: 30 30 30 30;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.ResivationFormController">
    <children>
-      <Label layoutX="13.0" layoutY="29.0" text="All Rooms">
+      <Label layoutX="20.0" layoutY="159.0" text="All Rooms">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblAllRooms" layoutX="122.0" layoutY="26.0" prefHeight="37.0" prefWidth="132.0">
+      <Label fx:id="lblAllRooms" layoutX="123.0" layoutY="148.0" prefHeight="51.0" prefWidth="132.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="502.0" layoutY="29.0" text="Current Rooms:">
+      <Label layoutX="636.0" layoutY="159.0" text="Current Rooms:">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblCurrenRooms" layoutX="649.0" layoutY="26.0" prefHeight="37.0" prefWidth="132.0">
+      <Label fx:id="lblCurrenRooms" layoutX="788.0" layoutY="149.0" prefHeight="51.0" prefWidth="137.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="13.0" layoutY="94.0" text="Types:">
+      <Label layoutX="14.0" layoutY="228.0" text="Types:">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="cmbTypes" layoutX="81.0" layoutY="94.0" prefHeight="31.0" prefWidth="132.0" />
-      <Label layoutX="502.0" layoutY="95.0" text="Qty:">
+      <JFXComboBox fx:id="cmbTypes" layoutX="93.0" layoutY="228.0" prefHeight="31.0" prefWidth="132.0" />
+      <Label layoutX="656.0" layoutY="228.0" text="Qty:">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblQty" layoutX="562.0" layoutY="92.0" prefHeight="37.0" prefWidth="132.0">
+      <Label fx:id="lblQty" layoutX="811.0" layoutY="214.0" prefHeight="44.0" prefWidth="147.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="21.0" layoutY="185.0" text="Res_id:">
+      <Label layoutX="32.0" layoutY="294.0" text="Res_id:">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtResId" layoutX="21.0" layoutY="225.0" onAction="#txtRes_IdOnAction" prefHeight="37.0" prefWidth="190.0" promptText="id" />
-      <Label layoutX="21.0" layoutY="282.0" text="Date">
+      <JFXTextField fx:id="txtResId" layoutX="30.0" layoutY="327.0" onAction="#txtRes_IdOnAction" prefHeight="37.0" prefWidth="190.0" promptText="id" />
+      <Label layoutX="32.0" layoutY="382.0" text="Date">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtDate" layoutX="21.0" layoutY="332.0" prefHeight="37.0" prefWidth="190.0" promptText="date" />
-      <Label layoutX="21.0" layoutY="397.0" text="Student Id:">
+      <JFXTextField fx:id="txtDate" layoutX="33.0" layoutY="424.0" prefHeight="37.0" prefWidth="190.0" promptText="date" />
+      <Label layoutX="26.0" layoutY="488.0" text="Student Id:">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="cmbStudentId" layoutX="20.0" layoutY="435.0" prefHeight="31.0" prefWidth="168.0" />
-      <Label layoutX="21.0" layoutY="565.0" text="Status">
+      <JFXComboBox fx:id="cmbStudentId" layoutX="34.0" layoutY="529.0" prefHeight="31.0" prefWidth="168.0" />
+      <Label layoutX="416.0" layoutY="387.0" text="Status">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtStatus" layoutX="21.0" layoutY="601.0" prefHeight="37.0" prefWidth="190.0" promptText="stutas" />
-      <Label layoutX="21.0" layoutY="481.0" text="Room_Type_Id">
+      <JFXTextField fx:id="txtStatus" layoutX="410.0" layoutY="426.0" prefHeight="37.0" prefWidth="190.0" promptText="stutas" />
+      <Label layoutX="426.0" layoutY="300.0" text="Room_Type_Id">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="cmbRoomTypeId" layoutX="20.0" layoutY="514.0" prefHeight="31.0" prefWidth="168.0" />
-      <TableView fx:id="tblView" layoutX="254.0" layoutY="151.0" prefHeight="492.0" prefWidth="624.0">
+      <JFXComboBox fx:id="cmbRoomTypeId" layoutX="416.0" layoutY="341.0" prefHeight="31.0" prefWidth="168.0" />
+      <TableView fx:id="tblView" layoutX="28.0" layoutY="613.0" prefHeight="328.0" prefWidth="944.0">
         <columns>
-          <TableColumn fx:id="colResId" prefWidth="92.0" text="Res_id" />
-          <TableColumn fx:id="colDate" prefWidth="114.0" text="Date" />
-            <TableColumn fx:id="colStudentId" prefWidth="135.0" text="Student_id" />
-            <TableColumn fx:id="colRoomId" prefWidth="150.0" text="Room_Type_Id" />
-            <TableColumn fx:id="colStatus" prefWidth="132.0" text="Status" />
+          <TableColumn fx:id="colResId" prefWidth="134.0" text="Res_id" />
+          <TableColumn fx:id="colDate" prefWidth="186.0" text="Date" />
+            <TableColumn fx:id="colStudentId" prefWidth="165.0" text="Student_id" />
+            <TableColumn fx:id="colRoomId" prefWidth="237.0" text="Room_Type_Id" />
+            <TableColumn fx:id="colStatus" prefWidth="221.0" text="Status" />
         </columns>
       </TableView>
-      <JFXButton layoutX="23.0" layoutY="664.0" onAction="#btnRegisterOnAction" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: blue; -fx-background-radius: 20 20 20 20;" text="Register" textFill="WHITE">
+      <JFXButton layoutX="720.0" layoutY="293.0" onAction="#btnRegisterOnAction" prefHeight="50.0" prefWidth="248.0" style="-fx-background-color: #4C2149;" text="Register" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="156.0" layoutY="664.0" onAction="#btnDeletOnAction" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: red; -fx-background-radius: 20 20 20 20;" text="Delete" textFill="WHITE">
+      <JFXButton layoutX="720.0" layoutY="365.0" onAction="#btnDeletOnAction" prefHeight="50.0" prefWidth="248.0" style="-fx-background-color: #4C2149;" text="Delete" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="294.0" layoutY="664.0" onAction="#btnUpdateOnAction" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: green; -fx-background-radius: 20 20 20 20;" text="Update" textFill="WHITE">
+      <JFXButton layoutX="720.0" layoutY="439.0" onAction="#btnUpdateOnAction" prefHeight="50.0" prefWidth="248.0" style="-fx-background-color: #4C2149;" text="Update" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="445.0" layoutY="664.0" onAction="#btnSearchOnAction" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #f1c40f; -fx-background-radius: 20 20 20 20;" text="Search" textFill="WHITE">
+      <JFXButton layoutX="721.0" layoutY="511.0" onAction="#btnSearchOnAction" prefHeight="50.0" prefWidth="248.0" style="-fx-background-color: #4C2149;" text="Search" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
+      <Pane prefHeight="129.0" prefWidth="991.0" style="-fx-background-color: #9b4395;">
+         <children>
+            <Label layoutX="399.0" layoutY="42.0" text="Reservation" textFill="#fff6f6">
+               <font>
+                  <Font name="System Italic" size="41.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <FontAwesomeIcon fill="WHITE" glyphName="PLUS" layoutX="790.0" layoutY="325.0" size="20" strokeWidth="0.0" />
+      <FontAwesomeIcon fill="WHITE" glyphName="TRASH" layoutX="792.0" layoutY="397.0" size="20" strokeWidth="0.0" />
+      <FontAwesomeIcon fill="WHITE" glyphName="PENCIL" layoutX="795.0" layoutY="471.0" size="20" strokeWidth="0.0" />
+      <FontAwesomeIcon fill="WHITE" glyphName="FOLDER" layoutX="788.0" layoutY="543.0" size="20" strokeWidth="0.0" />
    </children>
 </AnchorPane>

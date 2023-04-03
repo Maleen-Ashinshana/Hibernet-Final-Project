@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,6 +36,8 @@ import java.util.regex.Pattern;
 public class DashboardFormController {
     public AnchorPane mainPane;
     public AnchorPane subPane;
+    @FXML
+    private AnchorPane stdPaneNumber1;
     public TableView tblStudent;
     public TableColumn colId;
     public TableColumn colName;
@@ -75,26 +78,43 @@ public class DashboardFormController {
         dobPattern=Pattern.compile("[0-9]{1,}");
         genderPattern=Pattern.compile("^[A-Za-z]{1,}$");
     }
+    @FXML
+    void btnstdOnAction(ActionEvent event) throws IOException {
+        mainPane.getChildren().clear();
+        Navigation.navigation(Routs.STUDENT,mainPane);
 
-    public void btnStudentOnAction(ActionEvent actionEvent) throws IOException {
-         mainPane.getChildren().clear();
-         Navigation.navigation(Routs.STUDENT,mainPane);
+    }
+    @FXML
+    void btnRVAOOnACtion(ActionEvent event) throws IOException {
+        stdPaneNumber1.getChildren().clear();
+        Navigation.navigation(Routs.RESERVATION,stdPaneNumber1);
+
+    }
+    @FXML
+    void btnRmOnAction(ActionEvent event) throws IOException {
+          stdPaneNumber1.getChildren().clear();
+          Navigation.navigation(Routs.ROOM,stdPaneNumber1);
     }
 
-    public void btnRoomOnAction(ActionEvent actionEvent) throws IOException {
+   /* public void btnStudentOnAction(ActionEvent actionEvent) throws IOException {
+         mainPane.getChildren().clear();
+         Navigation.navigation(Routs.STUDENT,mainPane);
+    }*/
+
+    /*public void btnRoomOnAction(ActionEvent actionEvent) throws IOException {
         URL resource = getClass().getResource("/lk/ijse/hostel/view/roomForm.fxml");
         Parent load = FXMLLoader.load(resource);
         Scene scene = new Scene(load);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
-    public void btnReservationOnAction(ActionEvent actionEvent) throws IOException {
+   /* public void btnReservationOnAction(ActionEvent actionEvent) throws IOException {
         subPane.getChildren().clear();
         Navigation.navigation(Routs.RESERVATION,subPane);
 
-    }
+    }*/
 
     public void txtStudentIdOnAction(ActionEvent actionEvent) {
         StudentDTO studentDTO=studentService.search(txtStudentId.getText());

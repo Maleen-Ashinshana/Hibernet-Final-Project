@@ -2,70 +2,80 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="470.0" prefWidth="890.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.roomFormController">
+<AnchorPane fx:id="pane" prefHeight="875.0" prefWidth="991.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.roomFormController">
    <children>
-      <TableView fx:id="table" layoutX="284.0" layoutY="35.0" prefHeight="251.0" prefWidth="567.0">
+      <TableView fx:id="table" layoutX="93.0" layoutY="592.0" prefHeight="251.0" prefWidth="838.0">
         <columns>
-          <TableColumn fx:id="tblRoomId" prefWidth="100.0" text="Room_Id" />
-          <TableColumn fx:id="colRoomType" prefWidth="156.0" text="Room Type" />
-            <TableColumn fx:id="tblKeyMoney" prefWidth="168.0" text="key_money" />
-            <TableColumn fx:id="colQty" prefWidth="144.0" text="qty" />
+          <TableColumn fx:id="tblRoomId" prefWidth="159.0" text="Room_Id" />
+          <TableColumn fx:id="colRoomType" prefWidth="233.0" text="Room Type" />
+            <TableColumn fx:id="tblKeyMoney" prefWidth="235.0" text="key_money" />
+            <TableColumn fx:id="colQty" prefWidth="210.0" text="qty" />
         </columns>
       </TableView>
-      <Label layoutX="192.0" layoutY="84.0" prefHeight="41.0" prefWidth="108.0" textFill="#c90b0b">
+      <Label layoutX="12.0" layoutY="196.0" prefHeight="32.0" prefWidth="108.0" text="Room Id:">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="19.0" layoutY="28.0" prefHeight="32.0" prefWidth="108.0" text="Room Id:">
+      <JFXTextField fx:id="txtRoomId" layoutX="11.0" layoutY="229.0" onAction="#txtIdOnAction" prefHeight="44.0" prefWidth="251.0" promptText="Id" />
+      <Label layoutX="660.0" layoutY="188.0" text="Room Type:">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtRoomId" layoutX="21.0" layoutY="64.0" onAction="#txtIdOnAction" prefHeight="41.0" prefWidth="183.0" promptText="id" />
-      <Label layoutX="23.0" layoutY="149.0" text="Room Type:">
+      <JFXTextField fx:id="txtType" layoutX="660.0" layoutY="228.0" prefHeight="44.0" prefWidth="251.0" promptText="type" />
+      <Label layoutX="10.0" layoutY="342.0" text="key-money:">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtType" layoutX="21.0" layoutY="185.0" prefHeight="41.0" prefWidth="183.0" promptText="type" />
-      <Label layoutX="23.0" layoutY="265.0" text="key-money:">
+      <JFXTextField fx:id="txtKeyMoney" layoutX="9.0" layoutY="382.0" prefHeight="44.0" prefWidth="251.0" promptText="key_money" />
+      <Label layoutX="673.0" layoutY="338.0" text="QTY">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtKeyMoney" layoutX="20.0" layoutY="314.0" prefHeight="41.0" prefWidth="183.0" promptText="key_money" />
-      <Label layoutX="23.0" layoutY="374.0" text="QTY">
+      <JFXTextField fx:id="txtQty" layoutX="669.0" layoutY="381.0" prefHeight="44.0" prefWidth="251.0" promptText="qty" />
+      <JFXButton layoutX="8.0" layoutY="506.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnAddOnAction" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: #4C2149;" text="Add" textFill="WHITE" wrapText="true">
          <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txtQty" layoutX="21.0" layoutY="411.0" prefHeight="41.0" prefWidth="183.0" promptText="qty" />
-      <JFXButton layoutX="369.0" layoutY="304.0" onAction="#btnAddOnAction" prefHeight="41.0" prefWidth="99.0" style="-fx-background-color: blue; -fx-background-radius: 10 10 10 10;" text="Add" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
+            <Font size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="501.0" layoutY="304.0" onAction="#btnDeleteOnAction" prefHeight="41.0" prefWidth="99.0" style="-fx-background-color: red; -fx-background-radius: 10 10 10 10;" text="Delete" textFill="WHITE">
+      <JFXButton layoutX="252.0" layoutY="507.0" onAction="#btnDeleteOnAction" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: #4C2149;" text="Delete" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="622.0" layoutY="304.0" onAction="#btnUpdateOnAction" prefHeight="41.0" prefWidth="99.0" style="-fx-background-color: green; -fx-background-radius: 10 10 10 10;" text="Update" textFill="WHITE">
+      <JFXButton layoutX="748.0" layoutY="507.0" onAction="#btnUpdateOnAction" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: #4C2149;" text="Update" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="753.0" layoutY="304.0" onAction="#btnSearchOnAction" prefHeight="41.0" prefWidth="99.0" style="-fx-background-color: #f1c40f; -fx-background-radius: 10 10 10 10;" text="Search" textFill="WHITE">
+      <JFXButton layoutX="496.0" layoutY="508.0" onAction="#btnSearchOnAction" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: #4C2149;" text="Search" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font size="18.0" />
          </font>
       </JFXButton>
+      <Pane layoutY="-1.0" prefHeight="151.0" prefWidth="991.0" style="-fx-background-color: #9b4395;">
+         <children>
+            <Label layoutX="430.0" layoutY="44.0" text="Room" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="47.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <FontAwesomeIcon fill="WHITE" glyphName="PLUS" layoutX="85.0" layoutY="538.0" size="20" strokeWidth="0.0" />
+      <FontAwesomeIcon fill="WHITE" glyphName="TRASH" layoutX="317.0" layoutY="540.0" size="20" strokeWidth="0.0" />
+      <FontAwesomeIcon fill="WHITE" glyphName="PENCIL" layoutX="809.0" layoutY="539.0" size="20" strokeWidth="0.0" />
+      <FontAwesomeIcon fill="WHITE" glyphName="FOLDER" layoutX="559.0" layoutY="540.0" size="20" strokeWidth="0.0" />
    </children>
 </AnchorPane>
