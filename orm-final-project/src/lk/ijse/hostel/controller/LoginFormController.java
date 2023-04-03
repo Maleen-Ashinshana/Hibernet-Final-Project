@@ -16,20 +16,14 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import lk.ijse.hostel.dto.UserDTO;
-import lk.ijse.hostel.entity.UserEntity;
 import lk.ijse.hostel.service.ServiceFactory;
 import lk.ijse.hostel.service.ServiceTypes;
 import lk.ijse.hostel.service.custome.UserService;
 import lk.ijse.hostel.service.exception.DuplicateException;
-import lk.ijse.hostel.util.FactoryConfiguration;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class LoginFormController {
@@ -65,7 +59,7 @@ public class LoginFormController {
         passwordPatten=Pattern.compile("^[a-zA-Z0-9_]{8,}$");
         this.userService= (UserService) ServiceFactory.getInstance().getService(ServiceTypes.USER);
     }
-    public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
+/*    public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
         Session session= FactoryConfiguration.getInstance().getSession();
         Transaction transaction= session.beginTransaction();
         UserEntity userEntity=new UserEntity();
@@ -75,7 +69,7 @@ public class LoginFormController {
         System.out.println(re);
 
 
-/*        boolean uniq=true;
+*//*        boolean uniq=true;
         String pass="password";
 
         if (uniq){
@@ -108,7 +102,7 @@ public class LoginFormController {
         }else{
             txtUserName.setFocusColor(Paint.valueOf("Red"));
             txtUserName.requestFocus();
-        }*/
+        }*//*
         Stage widow= (Stage) pane.getScene().getWindow();
         widow.close();
         URL resource = getClass().getResource("/lk/ijse/hostel/view/dashboardForm.fxml");
@@ -122,7 +116,7 @@ public class LoginFormController {
 
 
 
-    }
+    }*/
 
     public void btnCreateOnAction(ActionEvent actionEvent) throws IOException {
       /*pane.getChildren().clear();
@@ -182,7 +176,16 @@ public class LoginFormController {
         }));
     }
 
-    public void btnSingInOnAction(ActionEvent actionEvent) {
+    public void btnSingInOnAction(ActionEvent actionEvent) throws IOException {
+        Stage widow= (Stage) pane.getScene().getWindow();
+        widow.close();
+        URL resource = getClass().getResource("/lk/ijse/hostel/view/dashboardForm.fxml");
+        Parent load = FXMLLoader.load(resource);
+        Scene scene = new Scene(load);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+
 
     }
 

@@ -31,7 +31,7 @@
                   <Glow />
                </effect>
             </JFXButton>
-            <JFXButton fx:id="singUp" buttonType="RAISED" layoutX="112.0" layoutY="304.0" onAction="#btnCreateOnAction" onMouseClicked="#btnOnCliked" prefHeight="39.0" prefWidth="186.0" ripplerFill="#d0d0d0" style="-fx-background-color: #4C2149; -fx-background-radius: 20 20 20 20;" text="SING UP" textFill="WHITE" textOverrun="CLIP">
+            <JFXButton fx:id="singUp" buttonType="RAISED" layoutX="112.0" layoutY="304.0" onMouseClicked="#btnOnCliked" prefHeight="39.0" prefWidth="186.0" ripplerFill="#d0d0d0" style="-fx-background-color: #4C2149; -fx-background-radius: 20 20 20 20;" text="SING UP" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font size="18.0" />
                </font>

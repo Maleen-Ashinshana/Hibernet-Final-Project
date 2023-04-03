@@ -29,7 +29,6 @@ import lk.ijse.hostel.util.Routs;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -65,7 +64,7 @@ public class DashboardFormController {
     public void initialize() throws SQLException, ClassNotFoundException {
       pattern();
       studentView();
-      loadAllStudent();
+      //loadAllStudent();
       this.studentService= (StudentService) ServiceFactory.getInstance().getService(ServiceTypes.STUDENT);
     }
     public void pattern(){
@@ -230,7 +229,7 @@ public class DashboardFormController {
         widow.close();
         stage.show();
     }
-    private void loadAllStudent(){
+    /*private void loadAllStudent(){
         ArrayList<StudentDTO> studentDTOS=null;
         studentDTOS= (ArrayList<StudentDTO>) studentService.findAll();
         for (StudentDTO dto:studentDTOS) {
@@ -239,5 +238,5 @@ public class DashboardFormController {
 
             tblStudent.setItems(obList);
         }
-    }
+    }*/
 }
