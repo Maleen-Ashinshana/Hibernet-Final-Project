@@ -10,6 +10,7 @@ import lk.ijse.hostel.service.exception.DuplicateException;
 import lk.ijse.hostel.service.exception.NotFoundException;
 import lk.ijse.hostel.service.util.Convertor;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,5 +60,10 @@ public class StudentServiceIMPL implements StudentService {
             dtos.add(new StudentDTO(entity.getStudentId(), entity.getStudentName(), entity.getAddress(), entity.getContact_number(), entity.getDate_of_birth(), entity.getGender()));
         }
         return dtos;
+    }
+
+    @Override
+    public List<String> loadStudentIds() throws SQLException, ClassNotFoundException {
+        return studentDAO.loadStudentIds();
     }
 }

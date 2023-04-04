@@ -5,6 +5,7 @@ import lk.ijse.hostel.service.SuperSevice;
 import lk.ijse.hostel.service.exception.DuplicateException;
 import lk.ijse.hostel.service.exception.NotFoundException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface StudentService extends SuperSevice {
@@ -15,4 +16,5 @@ public interface StudentService extends SuperSevice {
     public void delete(String code)throws NotFoundException;
     public  StudentDTO search(String id) throws  NotFoundException;
     public List<StudentDTO> findAll();
+    List<String> loadStudentIds()throws SQLException, ClassNotFoundException;
 }

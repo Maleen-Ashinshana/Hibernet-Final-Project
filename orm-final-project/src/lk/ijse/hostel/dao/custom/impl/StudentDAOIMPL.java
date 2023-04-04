@@ -133,15 +133,16 @@ public class StudentDAOIMPL implements StudentDAO {
         Session session=FactoryConfiguration.getInstance().getSession();
         Transaction transaction= session.beginTransaction();
 
+
         ArrayList<StudentEntity> entities=new ArrayList<>();
-        NativeQuery hql= session.createSQLQuery("select * from studentEntity");
+        NativeQuery hql= session.createSQLQuery("select * from StudentEntity");
         hql.addEntity(StudentEntity.class);
         List<StudentEntity> entityList=hql.list();
 
         for (StudentEntity student:entityList) {
             entities.add(student);
         }
-return entities;
+        return entities;
     }
     private List<StudentEntity> getStudentList(ResultSet resultSet){
         try {
@@ -170,5 +171,23 @@ return entities;
             StudentEntity studentEntity=session.
         }*/
         return false;
+    }
+
+    @Override
+    public List<String> loadStudentIds() throws SQLException, ClassNotFoundException {
+        Session session=FactoryConfiguration.getInstance().getSession();
+        List<String> list=new ArrayList<>();
+        NativeQuery hql= session.createSQLQuery("SELECT  * from Student");
+        System.out.println(hql);
+        hql.addEntity(StudentEntity.class);
+        List<StudentEntity> studentEntityList=hql.list();
+        String id;
+        for (StudentEntity student:studentEntityList) {
+            System.out.println(student.getStudentId());
+            list.add(student.getStudentId());
+            System.out.println(student.getStudentId());
+
+        }
+        return list;
     }
 }

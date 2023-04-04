@@ -5,8 +5,6 @@ import lk.ijse.hostel.dao.custom.impl.RoomDAOIMPL;
 import lk.ijse.hostel.dao.custom.impl.StudentDAOIMPL;
 import lk.ijse.hostel.dao.custom.impl.UserDAOIMPL;
 
-import java.sql.Connection;
-
 public class DAOFactory {
     private static DAOFactory daoFactory;
 
@@ -24,6 +22,8 @@ public class DAOFactory {
                 return new StudentDAOIMPL();
             case ROOM:
                 return new RoomDAOIMPL();
+            /*case RESEVATION:
+                return new Res*/
             default:
                 return null;
         }
