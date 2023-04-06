@@ -12,7 +12,6 @@ import lk.ijse.hostel.service.util.Convertor;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class StudentServiceIMPL implements StudentService {
     private final StudentDAO studentDAO;
@@ -21,8 +20,35 @@ public class StudentServiceIMPL implements StudentService {
         studentDAO= (StudentDAO) DAOFactory.getInstance().getDAO(DaoTypes.STUDENT);
         convertor=new Convertor();
     }
+
     @Override
+    public StudentDTO search(String id) throws NotFoundException {
+        StudentEntity search=studentDAO.search(id);
+        return new StudentDTO(search.getStudentId(),search.getStudentName(),search.getAddress(),search.getContact_number(),search.getDate_of_birth(),search.getGender());
+    }
+
+    @Override
+    public boolean addStudent(StudentDTO studentDTO) throws DuplicateException {
+        return studentDAO.save(new StudentEntity(studentDTO.getStudentId(),studentDTO.getStudentName(),studentDTO.getAddress(),studentDTO.getContact_number(),studentDTO.getDate_of_birth(),studentDTO.getGender()));
+    }
+
+    @Override
+    public boolean updateStudent(StudentDTO studentDTO) throws NotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean deleteStudent(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public ArrayList<StudentDTO> getAllStudent() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+/*    @Override
     public StudentDTO saveStudent(StudentDTO studentDTO) throws DuplicateException {
+        if (studentDAO.existByPk(studentDTO.getStudentId())) throw new DuplicateException("Student Already saved");
         studentDAO.save(convertor.toStudent(studentDTO));
         return studentDTO;
     }
@@ -48,22 +74,29 @@ public class StudentServiceIMPL implements StudentService {
     @Override
     public List<StudentDTO> findAll() {
         //return studentDAO.findAll().stream().map(studentEntity -> convertor.fromStudent(studentEntity)).collect(Collectors.toList());
-        /*ArrayList<StudentDTO> studentDTOS=new ArrayList<>();
+        *//*ArrayList<StudentDTO> studentDTOS=new ArrayList<>();
         ArrayList<StudentEntity> entities= (ArrayList<StudentEntity>) studentDAO.findAll();
         for (StudentEntity studentEntity:entities) {
             studentDTOS.add(new StudentDTO(studentEntity.getStudentId(),studentEntity.getStudentName(),studentEntity.getStudentName(),studentEntity.getContact_number(),studentEntity.getDate_of_birth(),studentEntity.getGender()));
         }
-        return studentDTOS;*/
-        ArrayList<StudentDTO> dtos=new ArrayList<>();
+        return studentDTOS;*//*
+*//*        ArrayList<StudentDTO> dtos=new ArrayList<>();
         ArrayList<StudentEntity>studentEntities= (ArrayList<StudentEntity>) studentDAO.findAll();
         for (StudentEntity entity:studentEntities) {
             dtos.add(new StudentDTO(entity.getStudentId(), entity.getStudentName(), entity.getAddress(), entity.getContact_number(), entity.getDate_of_birth(), entity.getGender()));
         }
-        return dtos;
+        return dto*//*;
+        *//*List<StudentDTO> rs=studentDAO.findAll();
+        for (StudentEntity student:rs) {
+            System.out.println(student.toString());
+        }
+        return rs;*//*
+        return studentDAO.findAll().stream().map(StudentEntity->convertor.fromStudent(StudentEntity)).collect(Collectors.toList());
     }
 
     @Override
     public List<String> loadStudentIds() throws SQLException, ClassNotFoundException {
-        return studentDAO.loadStudentIds();
-    }
+        return null;
+        *//*return studentDAO.loadStudentIds()*//*
+    }*/
 }

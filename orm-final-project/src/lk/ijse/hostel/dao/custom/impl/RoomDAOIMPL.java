@@ -8,10 +8,11 @@ import lk.ijse.hostel.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.List;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class RoomDAOIMPL implements RoomDAO {
-    @Override
+/*    @Override
     public RoomEntity save(RoomEntity entity) throws ConstraintViolationException {
         Session session= FactoryConfiguration.getInstance().getSession();
         Transaction transaction= session.beginTransaction();
@@ -25,7 +26,7 @@ public class RoomDAOIMPL implements RoomDAO {
             transaction.rollback();
             return entity;
         }
-        /*return entity;*/
+        *//*return entity;*//*
     }
 
     @Override
@@ -72,10 +73,10 @@ public class RoomDAOIMPL implements RoomDAO {
 
     }
 
-/*    @Override
+*//*    @Override
     public RoomEntity search(RoomEntity entity) throws ConstraintViolationException {
         return null;
-    }*/
+    }*//*
 
     @Override
     public List<RoomEntity> findAll() {
@@ -85,10 +86,75 @@ public class RoomDAOIMPL implements RoomDAO {
     @Override
     public long count() {
         return 0;
-    }
+    }*/
 
     @Override
     public boolean existByPk(String pk) {
         return false;
+    }
+
+    @Override
+    public boolean save(RoomEntity entity) throws ConstraintViolationException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        //transaction.begin();
+        try{
+
+            session.saveOrUpdate(entity);
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            System.out.println(e);;
+            transaction.rollback();
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean update(RoomEntity entity) throws ConstraintViolationException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        //transaction.begin();
+        try{
+
+
+            session.update(entity);
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            System.out.println(e);;
+            transaction.rollback();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean delete(String id) throws NotFoundException {
+        return false;
+    }
+
+    @Override
+    public RoomEntity search(String s) throws ConstraintViolationException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        //transaction.begin();
+        try{
+
+            RoomEntity roomEntity = session.find(RoomEntity.class, s);
+            transaction.commit();
+            return new RoomEntity(s,roomEntity.getType(),roomEntity.getKey_money(),roomEntity.getQty());
+        }catch (Exception e){
+            System.out.println(e);;
+            transaction.rollback();
+            return null;
+        }
+
+    }
+
+
+    @Override
+    public ArrayList<RoomEntity> getAll() throws SQLException, ClassNotFoundException {
+        return null;
     }
 }

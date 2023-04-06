@@ -2,8 +2,6 @@ package lk.ijse.hostel.controller;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -12,12 +10,8 @@ import lk.ijse.hostel.dto.RoomDTO;
 import lk.ijse.hostel.service.ServiceFactory;
 import lk.ijse.hostel.service.ServiceTypes;
 import lk.ijse.hostel.service.custome.RoomService;
-import lk.ijse.hostel.service.exception.DuplicateException;
-import lk.ijse.hostel.service.exception.NotFoundException;
-import lk.ijse.hostel.tm.RoomTM;
 
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class roomFormController {
     public AnchorPane pane;
@@ -44,7 +38,7 @@ public class roomFormController {
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
     }
 
-    public void btnAddOnAction(ActionEvent actionEvent) {
+    /*public void btnAddOnAction(ActionEvent actionEvent) {
         RoomDTO roomDTO=new RoomDTO(txtRoomId.getText(),txtType.getText(),txtKeyMoney.getText(),Integer.parseInt(txtQty.getText()));
         try {
             if(roomService.saveRoom(roomDTO)==null){
@@ -60,9 +54,9 @@ public class roomFormController {
         }catch (DuplicateException e){
             new Alert(Alert.AlertType.ERROR,"Room Already Exists").show();
         }
-    }
+    }*/
 
-    public void btnDeleteOnAction(ActionEvent actionEvent) {
+    /*public void btnDeleteOnAction(ActionEvent actionEvent) {
         Alert alert=new Alert(Alert.AlertType.WARNING,"are you sure to delete the Room", ButtonType.YES,ButtonType.NO);
         Optional<ButtonType> result=alert.showAndWait();
         if (result.isPresent()&&result.get()==ButtonType.YES){
@@ -73,9 +67,9 @@ public class roomFormController {
                 new Alert(Alert.AlertType.WARNING,"No").show();
             }
         }
-    }
+    }*/
 
-    public void btnUpdateOnAction(ActionEvent actionEvent) {
+   /* public void btnUpdateOnAction(ActionEvent actionEvent) {
       RoomDTO roomDTO=new RoomDTO(txtRoomId.getText(),txtType.getText(),txtKeyMoney.getText(),Integer.parseInt(txtQty.getText()));
       try {
           roomService.updateRoom(roomDTO);
@@ -83,7 +77,7 @@ public class roomFormController {
       }catch (NotFoundException e){
           new Alert(Alert.AlertType.ERROR,e.getMessage());
       }
-    }
+    }*/
 
     public void btnSearchOnAction(ActionEvent actionEvent) {
 

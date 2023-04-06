@@ -2,8 +2,6 @@ package lk.ijse.hostel.controller;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -16,7 +14,6 @@ import lk.ijse.hostel.service.custome.RoomService;
 import lk.ijse.hostel.service.custome.StudentService;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class ResivationFormController {
     public AnchorPane pane;
@@ -43,8 +40,8 @@ public class ResivationFormController {
     public void initialize() throws SQLException, ClassNotFoundException {
    loadStudentId();
    this.studentService= (StudentService) ServiceFactory.getInstance().getService(ServiceTypes.STUDENT);
-   this.roomService= (RoomService) ServiceFactory.getInstance().getService(ServiceTypes.RESEVATION);
-   this.reservationService= (ReservationService) ServiceFactory.getInstance().getService(ServiceTypes.RESEVATION);
+   this.roomService= (RoomService) ServiceFactory.getInstance().getService(ServiceTypes.ROOM);
+   //this.reservationService= (ReservationService) ServiceFactory.getInstance().getService(ServiceTypes.RESEVATION);
 
 
     }
@@ -71,7 +68,7 @@ public class ResivationFormController {
     }
     private void loadStudentId(){
 
-        try {
+        /*try {
             ObservableList<String> observableList= FXCollections.observableArrayList();
             List<String> stringList=studentService.loadStudentIds();
 
@@ -83,7 +80,7 @@ public class ResivationFormController {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
 }

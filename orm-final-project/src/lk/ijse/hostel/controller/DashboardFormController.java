@@ -10,12 +10,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.hostel.dao.custom.StudentDAO;
 import lk.ijse.hostel.dao.custom.impl.StudentDAOIMPL;
 import lk.ijse.hostel.dto.StudentDTO;
 import lk.ijse.hostel.service.ServiceFactory;
@@ -30,7 +30,6 @@ import lk.ijse.hostel.util.Routs;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class DashboardFormController {
@@ -62,11 +61,13 @@ public class DashboardFormController {
     public StudentService studentService;
     public StudentDAOIMPL studentDAOIMPL;
     private ObservableList<StudentDTO> obList= FXCollections.observableArrayList();
+    private StudentDAO studentDAO;
 
 
     public void initialize() throws SQLException, ClassNotFoundException {
       pattern();
       studentView();
+      //loadStudent();
       //loadAllStudent();
       this.studentService= (StudentService) ServiceFactory.getInstance().getService(ServiceTypes.STUDENT);
     }
@@ -125,7 +126,7 @@ public class DashboardFormController {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
-        Alert alert=new Alert(Alert.AlertType.WARNING,"are you sure to delete the Student",ButtonType.YES,ButtonType.NO);
+        /*Alert alert=new Alert(Alert.AlertType.WARNING,"are you sure to delete the Student",ButtonType.YES,ButtonType.NO);
         Optional<ButtonType> result=alert.showAndWait();
         if (result.isPresent()&&result.get()==ButtonType.YES){
             try {
@@ -142,7 +143,7 @@ public class DashboardFormController {
             }catch (NotFoundException e){
                 new Alert(Alert.AlertType.WARNING,"No").show();
             }
-        }
+        }*/
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
@@ -198,11 +199,7 @@ public class DashboardFormController {
         }*/
         StudentDTO studentDTO=new StudentDTO(txtStudentId.getText(),txtStudentName.getText(),txtAddress.getText(),Integer.parseInt(txtContactNumber.getText()),txtDOB.getText(),txtGender.getText());
         try {
-            System.out.println(studentDTO);
-            if (studentService.saveStudent(studentDTO)==null){
-                new Alert(Alert.AlertType.ERROR,"Failed").show();
-                return;
-            }
+            boolean isAdded=studentService.addStudent(studentDTO);
             new Alert(Alert.AlertType.CONFIRMATION,"Student Added  Successful").show();
             tblStudent.getItems().add(new StudentTM(studentDTO.getStudentId(),studentDTO.getStudentName(),studentDTO.getAddress(),studentDTO.getContact_number(),studentDTO.getDate_of_birth(),studentDTO.getGender()));
             txtStudentId.clear();
@@ -211,6 +208,11 @@ public class DashboardFormController {
             txtContactNumber.clear();
             txtDOB.clear();
             txtGender.clear();
+
+           /* System.out.println(studentDTO);
+            if (studentService.addStudent(studentDTO)==null){
+                new Alert(Alert.AlertType.ERROR,"Failed").show();
+                return;*/
         }catch (DuplicateException e){
             new Alert(Alert.AlertType.ERROR,"Student Already Added").show();
             txtStudentId.selectAll();
@@ -249,6 +251,13 @@ public class DashboardFormController {
         widow.close();
         stage.show();
     }
+    /*private void loadStudent(){
+        List<StudentEntity> rs=studentDAO.findAll();
+
+        for (StudentEntity studentEntity:rs) {
+            System.out.println(studentEntity.toString());
+        }
+    }*/
     /*private void loadAllStudent(){
         ArrayList<StudentDTO> studentDTOS=null;
         studentDTOS= (ArrayList<StudentDTO>) studentService.findAll();
